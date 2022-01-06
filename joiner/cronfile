@@ -1,0 +1,3 @@
+ 32 0 * * * /app/merge.sh cam1 1 /out/cam1 > /proc/1/fd/1 2>/proc/1/fd/2
+ 35 0 * * * /app/merge.sh cam2 1 /out/cam2 > /proc/1/fd/1 2>/proc/1/fd/2
+

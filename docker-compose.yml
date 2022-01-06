@@ -1,0 +1,32 @@
+version: '3.9'
+
+services:
+  cam1:
+    build: ./ffmpeg
+    network_mode: host
+    environment:
+     - NAME=cam1
+     - FORMAT=mp4
+     - DURATION=1800
+     - RTSP_URL=rtsp://192.168.1.15:554/onvif1
+     - SEGMENT_FORMAT=%Y-%m-%d_%H%M%S
+    volumes:
+     - ${OUT_DIR}:/out/
+    restart: unless-stopped
+  cam2:
+    build: ./ffmpeg
+    environment:
+     - NAME=cam2
+     - FORMAT=mp4
+     - RTSP_URL=rtsp://192.168.1.11:554/onvif1
+     - DURATION=1800
+     - SEGMENT_FORMAT=%Y-%m-%d_%H%M%S
+    network_mode: host
+    volumes:
+     - ${OUT_DIR}:/out/
+    restart: unless-stopped
+  merge:
+    build: ./joiner
+    volumes:
+     - ${OUT_DIR}:/out/
+    restart: unless-stopped 
