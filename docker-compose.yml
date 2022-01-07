@@ -25,6 +25,30 @@ services:
     volumes:
      - ${OUT_DIR}:/out/
     restart: unless-stopped
+  cam3:
+    build: ./ffmpeg
+    environment:
+     - NAME=cam3
+     - FORMAT=mp4
+     - RTSP_URL=rtsp://10.147.17.215:8005/1/h264major
+     - DURATION=1800
+     - SEGMENT_FORMAT=%Y-%m-%d_%H%M%S
+    network_mode: host
+    volumes:
+     - ${OUT_DIR}:/out/
+    restart: unless-stopped
+  cam4:
+    build: ./ffmpeg
+    environment:
+     - NAME=cam4
+     - FORMAT=mp4
+     - RTSP_URL=rtsp://10.147.17.215:8001/onvif1
+     - DURATION=1800
+     - SEGMENT_FORMAT=%Y-%m-%d_%H%M%S
+    network_mode: host
+    volumes:
+     - ${OUT_DIR}:/out/
+    restart: unless-stopped      
   merge:
     build: ./joiner
     volumes:
