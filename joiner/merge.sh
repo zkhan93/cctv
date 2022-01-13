@@ -19,7 +19,7 @@ done
 LINES=$(wc -l < $OUT)
 if [ $LINES -ge "2" ]; then
   echo "merging videos"
-  /usr/local/bin/ffmpeg -f concat -safe 0 -i $OUT -c copy $MERGED
+  /usr/local/bin/ffmpeg -loglevel error -f concat -safe 0 -i $OUT -c copy $MERGED
   echo "videos merged to $MERGED"
   if [ $? -eq 0 ]; then
     echo "deleting segment videos"
