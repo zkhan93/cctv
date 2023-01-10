@@ -2,55 +2,78 @@ version: '3.9'
 
 services:
   cam1:
-    build: ./ffmpeg
+    build: ./recorder
     network_mode: host
     environment:
-     - NAME=cam1
-     - FORMAT=mp4
-     - DURATION=1800
-     - RTSP_URL=rtsp://192.168.1.15:554/onvif1
-     - SEGMENT_FORMAT=%Y-%m-%d_%H%M%S
+      - NAME=cam1
+      - RTSP_URL=rtsp://10.147.17.6:8554/ald1
+      - FORMAT=${FORMAT}
+      - DURATION=${DURATION}
+      - SEGMENT_FORMAT=${SEGMENT_FORMAT}
     volumes:
-     - ${OUT_DIR}:/out/
-    restart: unless-stopped
+      - ${OUT}:/out/
+    restart: always
+
   cam2:
-    build: ./ffmpeg
+    build: ./recorder
     environment:
-     - NAME=cam2
-     - FORMAT=mp4
-     - RTSP_URL=rtsp://192.168.1.11:554/onvif1
-     - DURATION=1800
-     - SEGMENT_FORMAT=%Y-%m-%d_%H%M%S
+      - NAME=cam2
+      - RTSP_URL=rtsp://10.9.0.2:8554/car
+      - TZ=Asia/Kolkata
+      - FORMAT=${FORMAT}
+      - DURATION=${DURATION}
+      - SEGMENT_FORMAT=${SEGMENT_FORMAT}
     network_mode: host
     volumes:
-     - ${OUT_DIR}:/out/
-    restart: unless-stopped
+      - ${OUT}:/out/
+    restart: always
+
   cam3:
-    build: ./ffmpeg
+    build: ./recorder
     environment:
-     - NAME=cam3
-     - FORMAT=mp4
-     - RTSP_URL=rtsp://10.147.17.215:8005/1/h264major
-     - DURATION=1800
-     - SEGMENT_FORMAT=%Y-%m-%d_%H%M%S
+      - NAME=cam3
+      - RTSP_URL=rtsp://10.9.0.2:8554/inside
+      - TZ=Asia/Kolkata
+      - FORMAT=${FORMAT}
+      - DURATION=${DURATION}
+      - SEGMENT_FORMAT=${SEGMENT_FORMAT}
     network_mode: host
     volumes:
-     - ${OUT_DIR}:/out/
-    restart: unless-stopped
+      - ${OUT}:/out/
+    restart: always
+
   cam4:
-    build: ./ffmpeg
+    build: ./recorder
     environment:
-     - NAME=cam4
-     - FORMAT=mp4
-     - RTSP_URL=rtsp://10.147.17.215:8001/onvif1
-     - DURATION=1800
-     - SEGMENT_FORMAT=%Y-%m-%d_%H%M%S
+      - NAME=cam4
+      - RTSP_URL=rtsp://10.9.0.2:8554/outside
+      - TZ=Asia/Kolkata
+      - FORMAT=${FORMAT}
+      - DURATION=${DURATION}
+      - SEGMENT_FORMAT=${SEGMENT_FORMAT}
     network_mode: host
     volumes:
-     - ${OUT_DIR}:/out/
-    restart: unless-stopped      
-  merge:
-    build: ./joiner
+      - ${OUT}:/out/
+    restart: always
+
+  cam5:
+    build: ./recorder
+    environment:
+      - NAME=cam5
+      - RTSP_URL=rtsp://10.9.0.2:8554/godrej
+      - TZ=Asia/Kolkata
+      - FORMAT=${FORMAT}
+      - DURATION=${DURATION}
+      - SEGMENT_FORMAT=${SEGMENT_FORMAT}
+    network_mode: host
     volumes:
-     - ${OUT_DIR}:/out/
-    restart: unless-stopped 
+      - ${OUT}:/out/
+    restart: always
+
+  merge:
+    build: ./merger
+    environment:
+      - TZ=Asia/Kolkata
+    volumes:
+      - ${OUT}:/out/
+    restart: always

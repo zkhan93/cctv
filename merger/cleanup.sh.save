@@ -1,0 +1,15 @@
+#!/bin/bash
+export TZ=Asia/Kolkata
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/
+CAM_COUNT=$2
+DIR=$1
+
+echo "Running on $(date)"
+THRESHOLD=45
+AVAIL=$(df /mnt/data --output=avail | tail -n 1)
+AVAIL_GB=$(($AVAIL/1024/1024))
+echo "${AVAIL_GB} GB"
+if [ $AVAIL_GB -lt $THRESHOLD ]; then
+  echo "less than $THRESHOLD GB left, need cleanup"
+  
+fi
