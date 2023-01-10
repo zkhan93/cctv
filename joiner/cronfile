@@ -1,8 +1,0 @@
-0 0 * * * /app/merge.sh cam1 1 /out/cam1 > /proc/1/fd/1 2>/proc/1/fd/2
-5 0 * * * /app/merge.sh cam2 1 /out/cam2 > /proc/1/fd/1 2>/proc/1/fd/2
-10 0 * * * /app/merge.sh cam3 1 /out/cam3 > /proc/1/fd/1 2>/proc/1/fd/2
-15 0 * * * /app/merge.sh cam4 1 /out/cam4 > /proc/1/fd/1 2>/proc/1/fd/2
-30 0 * * * /app/cleanup.sh cam1 /out/cam1 30 > /proc/1/fd/1 2>/proc/1/fd/2
-30 0 * * * /app/cleanup.sh cam2 /out/cam2 30 > /proc/1/fd/1 2>/proc/1/fd/2
-30 0 * * * /app/cleanup.sh cam3 /out/cam3 30 > /proc/1/fd/1 2>/proc/1/fd/2
-30 0 * * * /app/cleanup.sh cam4 /out/cam4 30 > /proc/1/fd/1 2>/proc/1/fd/2
