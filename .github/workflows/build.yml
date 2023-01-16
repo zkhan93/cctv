@@ -46,8 +46,8 @@ jobs:
           push: true
           platforms: linux/amd64,linux/arm64
           tags: |
-            ghcr.io/${{github.repository}}:${{ steps.date.outputs.version }}
-            ghcr.io/${{github.repository}}:latest
+            ghcr.io/${{github.repository}}-merger:${{ steps.date.outputs.version }}
+            ghcr.io/${{github.repository}}-merger:latest
 
       - name: Build and push Docker image for recorder
         uses: docker/build-push-action@v3
@@ -56,5 +56,5 @@ jobs:
           push: true
           platforms: linux/amd64,linux/arm64
           tags: |
-            ghcr.io/${{github.repository}}:${{ steps.date.outputs.version }}
-            ghcr.io/${{github.repository}}:latest
+            ghcr.io/${{github.repository}}-recorder:${{ steps.date.outputs.version }}
+            ghcr.io/${{github.repository}}-recorder:latest
