@@ -33,10 +33,20 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and push Docker image for linux/amd64,linux/arm64
+      - name: Build and push Docker image for merger
         uses: docker/build-push-action@v3
         with:
-          context: .
+          context: merger
+          push: true
+          platforms: linux/amd64,linux/arm64
+          tags: |
+            ghcr.io/${{github.repository}}:${{ steps.date.outputs.version }}
+            ghcr.io/${{github.repository}}:latest
+
+      - name: Build and push Docker image for recorder
+        uses: docker/build-push-action@v3
+        with:
+          context: recorder
           push: true
           platforms: linux/amd64,linux/arm64
           tags: |
