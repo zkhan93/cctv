@@ -1,6 +1,6 @@
 #! /bin/bash
 
-/app/cleanup.sh /out/ '.*-[0-9]+_\(cam[0-9]\|mosaic\).*' 4
+/app/cleanup.sh
 
 echo "starting to merge videos for last 10 days"
 for day in {1..10}; do
