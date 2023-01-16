@@ -6,7 +6,7 @@ services:
     network_mode: host
     environment:
       - NAME=cam1
-      - RTSP_URL=rtsp://10.147.17.6:8554/ald1
+      - RTSP_URL=rtsp://10.0.0.254:8554/ald-1
       - FORMAT=${FORMAT}
       - DURATION=${DURATION}
       - SEGMENT_FORMAT=${SEGMENT_FORMAT}
@@ -18,7 +18,7 @@ services:
     build: ./recorder
     environment:
       - NAME=cam2
-      - RTSP_URL=rtsp://10.9.0.2:8554/car
+      - RTSP_URL=rtsp://10.0.0.254:8554/ah-car
       - TZ=Asia/Kolkata
       - FORMAT=${FORMAT}
       - DURATION=${DURATION}
@@ -32,7 +32,7 @@ services:
     build: ./recorder
     environment:
       - NAME=cam3
-      - RTSP_URL=rtsp://10.9.0.2:8554/inside
+      - RTSP_URL=rtsp://10.0.0.254:8554/ah-inside
       - TZ=Asia/Kolkata
       - FORMAT=${FORMAT}
       - DURATION=${DURATION}
@@ -46,7 +46,7 @@ services:
     build: ./recorder
     environment:
       - NAME=cam4
-      - RTSP_URL=rtsp://10.9.0.2:8554/outside
+      - RTSP_URL=rtsp://10.0.0.254:8554/ah-outside
       - TZ=Asia/Kolkata
       - FORMAT=${FORMAT}
       - DURATION=${DURATION}
@@ -60,7 +60,7 @@ services:
     build: ./recorder
     environment:
       - NAME=cam5
-      - RTSP_URL=rtsp://10.9.0.2:8554/godrej
+      - RTSP_URL=rtsp://10.0.0.254:8554/ah-godrej
       - TZ=Asia/Kolkata
       - FORMAT=${FORMAT}
       - DURATION=${DURATION}

@@ -28,4 +28,5 @@ ffmpeg -nostdin -loglevel $LOG_LEVEL \
 -reset_timestamps 1 -segment_atclocktime 1 
 
 echo "stopped at $(date)"
+sleep 2;
 done

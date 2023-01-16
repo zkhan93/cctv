@@ -15,7 +15,6 @@ if [ -f "$OUT" ]; then
  rm $OUT
 fi
 
-# to ignore corrupted files
 for f in $DIR/${DATE}_*_${CAMID}.mkv; do
    if ffprobe -loglevel warning $f; then
      echo "file '$f'" >> $OUT

@@ -1,9 +1,7 @@
 #! /bin/bash
 
-# make sure enough space is available
 /app/cleanup.sh /out/ '.*-[0-9]+_\(cam[0-9]\|mosaic\).*' 4
 
-# merge recorded clips from past days 
 echo "starting to merge videos for last 10 days"
 for day in {1..10}; do
 	/app/merge.sh cam1 $day /out/cam1;
@@ -14,7 +12,6 @@ for day in {1..10}; do
 done
 echo "mergeing complete"
 
-# generate timelapse for recorded days 
 echo "generate timelapse video for last 3 days"
 for day in {1..3}; do
        /app/timelapse.sh cam1 $day /out/cam1;
@@ -27,5 +24,5 @@ echo "timelapse generation complete"
 
 echo "creating mosaic video"
 for day in {1..2}; do
-	/app/mosaic.sh $day /out/;
+	/app/mosaic.sh $day /out;
 done
