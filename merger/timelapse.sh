@@ -21,6 +21,5 @@ if [ -f $OUT_VID ]; then
 fi
 
 echo "timelapse file does not exists, proceeding to create one"
-ffmpeg -loglevel error -i $IN_VID -an -filter:v "setpts=PTS/60" $OUT_VID
+ffmpeg -loglevel error -i $IN_VID -an -filter:v "setpts=PTS/60,scale=-1:720" $OUT_VID
 echo "timelapse video created at $OUT_VID"
-

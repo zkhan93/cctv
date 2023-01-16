@@ -26,5 +26,6 @@ ffmpeg -nostdin -loglevel $LOG_LEVEL \
 -f segment -strftime 1 -segment_time $DURATION \
 -segment_format $FORMAT "/out/${NAME}/${SEGMENT_FORMAT}_${NAME}.$FORMAT" \
 -reset_timestamps 1 -segment_atclocktime 1 
+
 echo "stopped at $(date)"
 done

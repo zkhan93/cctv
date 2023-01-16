@@ -1,7 +1,7 @@
 #! /bin/bash
 
 # make sure enough space is available
-/app/cleanup.sh /out/ '.*-[0-9]+_cam[0-9].*' 4
+/app/cleanup.sh /out/ '.*-[0-9]+_\(cam[0-9]\|mosaic\).*' 4
 
 # merge recorded clips from past days 
 echo "starting to merge videos for last 10 days"
