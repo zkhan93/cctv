@@ -27,4 +27,4 @@ while [ $AVAIL_GB -lt $LIMIT ]; do
   echo "${AVAIL_GB} GB Available"
   ((DELETED++))
 done
-echo "deleted $DELETEd files"
+echo "deleted $DELETED files"
