@@ -1,10 +1,10 @@
 #!/bin/bash
 export TZ=Asia/Kolkata
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/
-DIR=$1
-LIMIT=45
-DEL_PATTERN=$2 # '.*-[0-9]+_cam[0-9].*'
-SORT_KEY_AT=$3
+DIR=$CLEANUP_DIR
+LIMIT=$CLEANUP_SPACE
+DEL_PATTERN=$CLEANUP_REGEX
+SORT_KEY_AT=$CLEANUP_SORT_KEY
 DELETED=0
 echo "Running on $(date)"
 

@@ -74,6 +74,10 @@ services:
     build: ./merger
     environment:
       - TZ=Asia/Kolkata
+      - CLEANUP_SPACE=45
+      - CLEANUP_REGEX=.*-[0-9]+_\(cam[0-9]\|mosaic\).*
+      - CLEANUP_DIR=/out/
+      - CLEANUP_SORT_KEY=4
     volumes:
       - ${OUT}:/out/
     restart: always

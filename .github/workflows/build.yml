@@ -11,6 +11,12 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       packages: write
+    strategy:
+      matrix:
+        recorder:
+          - DOCKER_CONTEXT: recorder
+        merger:
+          - DOCKER_CONTEXT: merger
 
     steps:
       - name: Checkout code
@@ -36,7 +42,7 @@ jobs:
       - name: Build and push Docker image for merger
         uses: docker/build-push-action@v3
         with:
-          context: merger
+          context: ${{ matrix.merger.DOCKER_CONTEXT }}
           push: true
           platforms: linux/amd64,linux/arm64
           tags: |
@@ -46,7 +52,7 @@ jobs:
       - name: Build and push Docker image for recorder
         uses: docker/build-push-action@v3
         with:
-          context: recorder
+          context: ${{ matrix.recorder.DOCKER_CONTEXT }}
           push: true
           platforms: linux/amd64,linux/arm64
           tags: |
