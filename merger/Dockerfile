@@ -2,7 +2,7 @@ FROM ubuntu:latest
 
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update \
- && apt-get install -yq software-properties-common tzdata cron
+    && apt-get install -yq software-properties-common tzdata cron
 ENV TZ=Asia/Kolkata
 RUN add-apt-repository ppa:jonathonf/ffmpeg-4
 RUN apt-get install ffmpeg -y
@@ -18,4 +18,4 @@ RUN touch /var/log/cron.log
 
 RUN crontab /etc/cron.d/cronfile
 
-ENTRYPOINT ["cron", "-f", "-L", "/dev/stdout"]
+ENTRYPOINT ["/app/entrypoint.sh"]

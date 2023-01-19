@@ -1,2 +1,4 @@
+SHELL=/bin/bash
+BASH_ENV=/etc/environment
 0  * * * * /app/log-date.sh > /proc/1/fd/1 2>/proc/1/fd/2
 20 0 * * * /app/start.sh > /proc/1/fd/1 2>/proc/1/fd/2
