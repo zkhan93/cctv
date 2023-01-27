@@ -1,9 +1,9 @@
 #!/bin/bash
 export TZ=Asia/Kolkata
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/
-CAMID=$1
-MDAYS=$2
-DIR=$3
+MDAYS=$1
+DIR=$2
+CAMID=$(basename $DIR)
 DATE=$(date +"%d-%m-%Y" -d "$MDAYS days ago")
 OUT="$DIR/${CAMID}_${DATE}.txt"
 DELETE="$DIR/del_${CAMID}_${DATE}.txt"

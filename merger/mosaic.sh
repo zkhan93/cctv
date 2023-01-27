@@ -1,28 +1,22 @@
 #!/bin/bash
 export TZ=Asia/Kolkata
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/
+
 MDAYS=$1
 DIR=$2
 DATE=$(date +"%d-%m-%Y" -d "$MDAYS days ago")
-OUT_VID="${DIR}/${DATE}_mosaic.mkv"
-IN_VID1="${DIR}/cam1/${DATE}_cam1_timelapse.mkv"
-IN_VID2="${DIR}/cam2/${DATE}_cam2_timelapse.mkv"
-IN_VID3="${DIR}/cam3/${DATE}_cam3_timelapse.mkv"
-IN_VID4="${DIR}/cam4/${DATE}_cam4_timelapse.mkv"
-
-#LEN1=$(ffprobe -v error -select_streams v:0 -show_entries stream=duration -of default=noprint_wrappers=1:nokey=1 $IN_VID1)
-#LEN2=$(ffprobe -v error -select_streams v:0 -show_entries stream=duration -of default=noprint_wrappers=1:nokey=1 $IN_VID2)
-#LEN3=$(ffprobe -v error -select_streams v:0 -show_entries stream=duration -of default=noprint_wrappers=1:nokey=1 $IN_VID3)
-#LEN4=$(ffprobe -v error -select_streams v:0 -show_entries stream=duration -of default=noprint_wrappers=1:nokey=1 $IN_VID4)
-
-# echo "$LEN1 $LEN2 $LEN3 $LEN4"
-
 echo "Running on $(date) - for ${DATE}"
 
+OUT_VID="${DIR}/${DATE}_mosaic.mkv"
 if [ -f $OUT_VID ]; then
   echo "mosaic file '$OUT_VID' already exists! quitting"
   exit
 fi
+
+IN_VID1="${DIR}/cam1/${DATE}_cam1_timelapse.mkv"
+IN_VID2="${DIR}/cam2/${DATE}_cam2_timelapse.mkv"
+IN_VID3="${DIR}/cam3/${DATE}_cam3_timelapse.mkv"
+IN_VID4="${DIR}/cam4/${DATE}_cam4_timelapse.mkv"
 
 if [ ! -f $IN_VID1 ]; then
   echo "source file '$IN_VID1' does not exists! using nullsrc"
