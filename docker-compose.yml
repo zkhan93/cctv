@@ -7,9 +7,8 @@ services:
     environment:
       - NAME=cam1
       - RTSP_URL=rtsp://10.0.0.254:8554/ald-1
-      - FORMAT=${FORMAT}
-      - DURATION=${DURATION}
-      - SEGMENT_FORMAT=${SEGMENT_FORMAT}
+    env_file:
+      - .env
     volumes:
       - ${OUT}:/out/
     restart: always
@@ -19,10 +18,8 @@ services:
     environment:
       - NAME=cam2
       - RTSP_URL=rtsp://10.0.0.254:8554/ah-car
-      - TZ=Asia/Kolkata
-      - FORMAT=${FORMAT}
-      - DURATION=${DURATION}
-      - SEGMENT_FORMAT=${SEGMENT_FORMAT}
+    env_file:
+      - .env
     network_mode: host
     volumes:
       - ${OUT}:/out/
@@ -33,10 +30,8 @@ services:
     environment:
       - NAME=cam3
       - RTSP_URL=rtsp://10.0.0.254:8554/ah-inside
-      - TZ=Asia/Kolkata
-      - FORMAT=${FORMAT}
-      - DURATION=${DURATION}
-      - SEGMENT_FORMAT=${SEGMENT_FORMAT}
+    env_file:
+      - .env
     network_mode: host
     volumes:
       - ${OUT}:/out/
@@ -47,10 +42,8 @@ services:
     environment:
       - NAME=cam4
       - RTSP_URL=rtsp://10.0.0.254:8554/ah-outside
-      - TZ=Asia/Kolkata
-      - FORMAT=${FORMAT}
-      - DURATION=${DURATION}
-      - SEGMENT_FORMAT=${SEGMENT_FORMAT}
+    env_file:
+      - .env
     network_mode: host
     volumes:
       - ${OUT}:/out/
@@ -61,10 +54,8 @@ services:
     environment:
       - NAME=cam5
       - RTSP_URL=rtsp://10.0.0.254:8554/ah-godrej
-      - TZ=Asia/Kolkata
-      - FORMAT=${FORMAT}
-      - DURATION=${DURATION}
-      - SEGMENT_FORMAT=${SEGMENT_FORMAT}
+    env_file:
+      - .env
     network_mode: host
     volumes:
       - ${OUT}:/out/
@@ -72,11 +63,8 @@ services:
 
   merge:
     build: ./merger
-    environment:
-      - TZ=Asia/Kolkata
-      - CLEANUP_SPACE=45
-      - CLEANUP_REGEX=.*-[0-9]+_\(cam[0-9]\|mosaic\).*
-      - CLEANUP_DIR=/out/
+    env_file:
+      - .env
     volumes:
       - ${OUT}:/out/
     restart: always
