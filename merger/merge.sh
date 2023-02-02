@@ -25,24 +25,27 @@ for f in $DIR/${DATE}_*_${CAMID}.mkv; do
    echo "$f" >> $DELETE
 done
 
-
-cat $OUT
-LINES=$(wc -l < $OUT)
-if [ $LINES -ge "2" ]; then
-  echo "merging videos"
-  ffmpeg -loglevel error -f concat -safe 0 -i $OUT -c copy $MERGED
-  echo "videos merged to $MERGED"
-
-  if [ $? -eq 0 ] && [ -f $MERGED ] ; then
-    echo "deleting segment videos"
-    for f in $(cat $DELETE) ; do 
-      rm "$f"
-    done
-  fi
-fi
 if [ -f $OUT ]; then
+  
+  cat $OUT
+
+  LINES=$(wc -l < $OUT)
+  if [ $LINES -ge "2" ]; then
+    echo "merging videos"
+    ffmpeg -loglevel error -f concat -safe 0 -i $OUT -c copy $MERGED
+    echo "videos merged to $MERGED"
+
+    if [ $? -eq 0 ] && [ -f $MERGED ] ; then
+      echo "deleting segment videos"
+      for f in $(cat $DELETE) ; do 
+        rm "$f"
+      done
+    fi
+  fi
   rm $OUT
+
 fi
+
 if [ -f $DELETE ]; then
   rm $DELETE
 fi
