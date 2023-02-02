@@ -17,7 +17,7 @@ AVAIL_GB=$(($AVAIL/1024/1024))
 echo "${AVAIL_GB} GB Available"
 while [ $AVAIL_GB -lt $LIMIT ]; do
   echo "$LIMIT GB needed, need cleanup"
-  FILE=$(find $DIR -type f -regex $DEL_PATTERN | -printf "%T+ %p\n" | sort | cut -c 32- | head -n 1)
+  FILE=$(find $DIR -type f -regex $DEL_PATTERN -printf "%T+ %p\n" | sort | cut -c 32- | head -n 1)
   echo "removing $FILE"
   echo "$(du -h $FILE)"
   rm $FILE
