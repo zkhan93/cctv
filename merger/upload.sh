@@ -1,6 +1,18 @@
 #/bin/bash
-TITLE=$1
-FILE=$2
+CAMID=$1
+DATE=$2
+FILE=$3
+
+if [ "$CAMID" == "cam1" ]; then
+  LOCATION="Indian City"
+else
+  LOCATION="Indian Village"
+fi
+
+TITLE="[$CAMID] ${LOCATION} - ${DATE}"
+
+DESCRIPTION="Live CCTV footage from ${LOCATION} captured on ${DATE}. Watch and stay updated with real-time events in the ${LOCATION}."
+
 
 PAYLOAD=$(cat <<EOF
 {
@@ -8,9 +20,8 @@ PAYLOAD=$(cat <<EOF
   "email": "$EMAIL", 
   "snippet": {
     "title": "$TITLE",
-    "tags": [
-      "timelapse"
-    ],
+    "description": "$DESCRIPTION",
+    "tags": ["city", "village", "CCTV", "live feed", "security", "real-time", "monitoring"],
     "categoryId": [
       "22"
     ]

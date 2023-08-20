@@ -26,5 +26,5 @@ echo "timelapse video created at $OUT_VID"
 
 TIMELAPSE_PATH_FOR_UPLOADER="/external/${CAMID}/${DATE}_${CAMID}_timelapse.mkv"
 echo "submit a task to upload the file to youtube $TIMELAPSE_PATH_FOR_UPLOADER"
-/app/upload.sh "$CAMID ${DATE} Timelapse" "$TIMELAPSE_PATH_FOR_UPLOADER";
-echo "task submitted"
+/app/upload.sh "$CAMID" "$DATE" "$TIMELAPSE_PATH_FOR_UPLOADER";
+echo "task submitt call ended"
