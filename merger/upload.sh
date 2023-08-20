@@ -22,9 +22,7 @@ PAYLOAD=$(cat <<EOF
     "title": "$TITLE",
     "description": "$DESCRIPTION",
     "tags": ["city", "village", "CCTV", "live feed", "security", "real-time", "monitoring"],
-    "categoryId": [
-      "22"
-    ]
+    "categoryId": "22"
   }
 }
 EOF
