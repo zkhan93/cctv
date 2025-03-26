@@ -20,7 +20,7 @@ echo "started at $(date)"
 echo "should timeout after $DURATION"
 timeout --kill-after $TIMEOUT_BUFFER -v $DURATION \
 ffmpeg -nostdin -loglevel $LOG_LEVEL \
--y -i $RTSP_URL -stimeout 60000000 \
+-y -i $RTSP_URL -timeout 60000000 \
 -vsync 1 -async -1 -an -vcodec copy \
 -t $DURATION \
 -f segment -strftime 1 -segment_time $DURATION \
